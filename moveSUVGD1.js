@@ -7,13 +7,13 @@ function moveSUVGD1(pname, px, py, pmap) {
 }
 
 function getDirection(px, py) {
-	var north = map[px, py + 1];
-	var south = map[px, py - 1];
-	var west = map[px - 1, py];
-	var east = map[px + 1, py];
+	var north = map[px][py + 1];
+	var south = map[px][py - 1];
+	var west = map[px - 1][py];
+	var east = map[px + 1][py];
 
-	if (north === "")
-		prompt("test")
+	prompt("north: " + north + "west: " + west + "south: " + south + "east: "
+			+ east)
 	if (north === 1)
 		return 0;
 	if (west === 1)
