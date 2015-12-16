@@ -12,6 +12,8 @@ function getDirection(px, py) {
 	var west = map[px - 1, py];
 	var east = map[px + 1, py];
 
+	if (north === "")
+		prompt("test")
 	if (north === 1)
 		return 0;
 	if (west === 1)
