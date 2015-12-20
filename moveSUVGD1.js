@@ -15,7 +15,7 @@ function getDirection(px, py) {
 	var player = new Coordinate(px, py);
 
 	if (needToRun(5, player) != "no") {
-		return getEscapeDirection(needToRun(5), player);
+		return getEscapeDirection(needToRun(5, player), player);
 	}
 
 	var goal = getCoinCoordinate(player);
