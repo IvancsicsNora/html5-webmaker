@@ -17,8 +17,8 @@ function getDirection(px, py) {
 	var goal = getCoinCoordinate(player);
 	var result = getPath(player, goal);
 
-	if (result.length == 100)
-		return Math.floor(Math.random() * 4)
+	if (!result)
+		return Math.floor(Math.random() * 4);
 
 	return result[0];
 }
@@ -104,7 +104,7 @@ function getPath(player, goal) {
 			}
 		}
 	}
-	return path;
+	return false;
 }
 
 function go(path, pathFinder, direction) {
