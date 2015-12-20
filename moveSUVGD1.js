@@ -104,10 +104,10 @@ function getPath(player, goal) {
 			}
 		}
 	}
-	if (counter == 100)
-		return false;
+	if (counter < 100)
+		return path;
 
-	return path;
+	return false;
 }
 
 function go(path, pathFinder, direction) {
