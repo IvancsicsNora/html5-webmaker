@@ -13,14 +13,18 @@ function Coordinate(x, y) {
 
 function getDirection(px, py) {
 	var player = new Coordinate(px, py);
-
+	// log
+	console.log("need to run from: " + needToRun(5, player));
 	if (needToRun(5, player) != "no") {
 		return console.log(getEscapeDirection(needToRun(5, player), player));
 	}
 
 	var goal = getCoinCoordinate(player);
+	// log
+	console.log("goal: " + goal);
 	var result = getPath(player, goal);
-
+	// log
+	console.log("result: " + result);
 	return result[0];
 }
 
