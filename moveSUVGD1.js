@@ -21,10 +21,10 @@ function getDirection(px, py) {
 function getPath(player, goal) {
 	var path = [];
 
-	var distanceX = goal.getX() - player.getX();
-	var distanceY = goal.getY() - player.getY();
+	var distanceX = goal.x - player.x;
+	var distanceY = goal.y - player.y;
 	var counter = 0;
-	var pathFinder = new Coordinate(player.getX(), player.getY());
+	var pathFinder = new Coordinate(player.x, player.y);
 
 	while (!isReached(distanceX, distanceY, counter)) {
 		counter++;
