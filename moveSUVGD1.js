@@ -14,13 +14,52 @@ function Coordinate(x, y) {
 function getDirection(px, py) {
 	var player = new Coordinate(px, py);
 
+	if (needToRun(5, player) != "no") {
+		return getEscapeDirection(needToRun(5), player);
+	}
+
 	var goal = getCoinCoordinate(player);
 	var result = getPath(player, goal);
 
-	if (result == false)
-		return Math.floor(Math.random() * 4);
-
 	return result[0];
+}
+
+function getEscapeDirection(name, player) {
+	var distanceX = players[name].x - player.x;
+	var distanceY = players[name].y - player.y;
+
+	if (distanceY < 0 && canGoNorth(player)) {
+		return 2;
+	}
+
+	if (distanceX < 0 && canGoWest(player)) {
+		return 3;
+	}
+	if (distanceY > 0 && canGoSouth(player)) {
+		return 0;
+	}
+
+	if (distanceX > 0 && canGoEast(player)) {
+		return 1;
+	}
+
+	return 4;
+}
+
+function needToRun(limit, player) {
+	var ghostNames = [ "m0", "m1", "m2", "m3", "m4" ];
+
+	for (var i = 0; i < ghostNames.length; i++) {
+		if (getDistanceFromGhost(ghostNames[i], player) < limit)
+			return ghostNames[i];
+	}
+
+	return "no";
+}
+
+function getDistanceFromGhost(name, player) {
+	return Math.abs(players[name].x - player.x)
+			+ Math.abs(players[name].y - player.y);
 }
 
 function getPath(player, goal) {
@@ -104,9 +143,6 @@ function getPath(player, goal) {
 			}
 		}
 	}
-	if (counter < 100)
-		return path;
-
 	return false;
 }
 
