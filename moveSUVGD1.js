@@ -16,7 +16,12 @@ function getDirection(px, py) {
 	// log
 	console.log("need to run from: " + needToRun(5, player));
 	if (needToRun(5, player) != "no") {
-		return console.log(getEscapeDirection(needToRun(5, player), player));
+		var direction = getEscapeDirection(needToRun(5, player), player);
+		if (direction == 4) {
+			return Math.floor(Math.random() * 4);
+		} else {
+			return direction;
+		}
 	}
 
 	var goal = getCoinCoordinate(player);
@@ -25,25 +30,30 @@ function getDirection(px, py) {
 	var result = getPath(player, goal);
 	// log
 	console.log("result: " + result);
-	return result[0];
+
+	if (result.length > 80) {
+		return Math.floor(Math.random() * 4);
+	} else {
+		return result[0];
+	}
 }
 
 function getEscapeDirection(name, player) {
 	var distanceX = players[name].x - player.x;
 	var distanceY = players[name].y - player.y;
 
-	if (distanceY < 0 && canGoNorth(player)) {
+	if (distanceY < 0 && canGoSouth(player)) {
 		return 2;
 	}
 
-	if (distanceX < 0 && canGoWest(player)) {
+	if (distanceX < 0 && canGoEast(player)) {
 		return 3;
 	}
-	if (distanceY > 0 && canGoSouth(player)) {
+	if (distanceY > 0 && canGoNorth(player)) {
 		return 0;
 	}
 
-	if (distanceX > 0 && canGoEast(player)) {
+	if (distanceX > 0 && canGoWest(player)) {
 		return 1;
 	}
 
