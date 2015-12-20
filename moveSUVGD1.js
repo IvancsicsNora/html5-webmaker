@@ -147,7 +147,7 @@ function getPath(player, goal) {
 			}
 		}
 	}
-	return false;
+	return path;
 }
 
 function go(path, pathFinder, direction) {
