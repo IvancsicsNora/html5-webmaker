@@ -13,8 +13,13 @@ function Coordinate(x, y) {
 
 function getDirection(px, py) {
 	var player = new Coordinate(px, py);
+
 	var goal = getCoinCoordinate(player);
 	var result = getPath(player, goal);
+
+	if (result.length == 100)
+		return Math.floor(Math.random() * 4)
+
 	return result[0];
 }
 
